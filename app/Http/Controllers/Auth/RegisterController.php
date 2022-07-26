@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Stevebauman\Location\Facades\Location;
 
 class RegisterController extends Controller
 {
@@ -64,10 +65,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $dummyIP = '76.249.156.44';
+        $ip = \request()->ip();
+        $location = Location::get($dummyIP);
+        $locationData= [
+            'ip' => $location->ip,
+            'country' => $location->countryCode,
+            'state' => $location->regionCode,
+            'zipcode' => $location->zipCode,
+            'city' => $location->cityName,
+        ];
+
+//        ddd(json_encode($locationData));
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'location' => json_encode($locationData),
             'password' => Hash::make($data['password']),
+
         ]);
     }
 }

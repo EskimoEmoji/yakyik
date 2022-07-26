@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Stevebauman\Location\Facades\Location;
 
 class PostsController extends Controller
 {
@@ -31,17 +32,21 @@ class PostsController extends Controller
 
         $attributes['user_id'] = auth()->id();
         $attributes['votes'] = 0;
+        $dummyIP = '76.249.156.44';
+        $ip = \request()->ip();
+        $data = Location::get($dummyIP);
+        $locationData= [
+            'ip' => $data->ip,
+            'country' => $data->countryCode,
+            'state' => $data->regionCode,
+            'zipcode' => $data->zipCode,
+            'city' => $data->cityName,
+        ];
+        $attributes['location'] = json_encode($locationData);
 
         Post::create($attributes);
 
         return redirect('/posts')->with('success','Your post has been created.');
     }
 
-//    public function update(Post $post){
-//
-////        $post->update(['votes'=>6969]);
-//
-//        return redirect('/posts');
-//
-//    }
 }
