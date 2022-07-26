@@ -24,6 +24,6 @@ class CommentController extends Controller
 
        Comment::create($attributes);
 
-        return redirect('/posts/');
+        return redirect($post->path());
     }
 }
