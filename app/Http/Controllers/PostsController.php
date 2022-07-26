@@ -16,8 +16,7 @@ class PostsController extends Controller
     public function index(){
 //       $posts = Post::whereNotNull('location')->get();
         $posts = Post::latest()->get();
-        $votes = Vote::latest()->get();
-        return view('posts.index', compact('posts','votes'));
+        return view('posts.index', compact('posts'));
     }
 
     public function show(Post $post){

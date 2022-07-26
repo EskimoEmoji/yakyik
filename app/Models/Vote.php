@@ -11,7 +11,7 @@ class Vote extends Model
 
     use HasFactory;
 
-    public function myVotes(){
-        return $this->belongsTo(User::class,'user_id');
-    }
+//    public function myVotes(){
+//        return $this->belongsTo(User::class,'user_id');
+//    }
 }

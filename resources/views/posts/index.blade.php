@@ -19,6 +19,16 @@
 {{--                COMMENTS & VOTING--}}
                 <div class="flex justify-between pt-3">
                     <div><a href="">{{$post->comments->count()}} 💬</a></div>
+
+{{--                    DELETE LATER--}}
+                    <div class="mr-3">
+                        @foreach($post->voters as $vote)
+                            @if($vote->user_id === auth()->id() && $post->id === $vote->post_id)
+                                <div>{{$vote->vote}}</div>
+                            @endif
+                        @endforeach
+                    </div>
+
                     <div class="flex justify-center items-center">
                         <form action="/posts/{{$post->id}}/voted/-1" method="POST">
                             @csrf
@@ -28,8 +38,6 @@
                         </form>
 
                         <div class="px-2 font-bold text-sm">{{$post->votes}}</div>
-
-                            <div>{{$post->myVotes}}</div>
 
                         <form action="/posts/{{$post->id}}/voted/1" method="POST">
                             @csrf
