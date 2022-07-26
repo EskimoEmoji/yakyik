@@ -18,13 +18,14 @@
 
 {{--                COMMENTS & VOTING--}}
                 <div class="flex justify-between pt-3">
-                    <div><a href="">{{$post->comments->count()}} 💬</a></div>
+                    <div><a href="/posts/{{$post->id}}">{{$post->comments->count()}} 💬</a></div>
 
 {{--                    DELETE LATER--}}
                     <div class="mr-3">
                         @foreach($post->voters as $vote)
                             @if($vote->user_id === auth()->id() && $post->id === $vote->post_id)
-                                <div>{{$vote->vote}}</div>
+                                <div>voted: {{$vote->vote}}</div>
+
                             @endif
                         @endforeach
                     </div>
