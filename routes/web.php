@@ -20,9 +20,9 @@ Route::get('/', function () {
 });
 
 Route::get('/posts',[PostsController::class,'index']);
-Route::get('/posts/{post}',[PostsController::class,'show']);
-Route::get('/post/create',[PostsController::class,'create']);
-Route::post('/posts',[PostsController::class,'store']);
+Route::get('/posts/{post}',[PostsController::class,'show'])->middleware('auth');
+Route::get('/post/create',[PostsController::class,'create'])->middleware('auth');
+Route::post('/posts',[PostsController::class,'store'])->middleware('auth');
 //Route::patch('/posts/{post}',[PostsController::class,'update']);
 
 Route::post('/posts/{post}/comment',[CommentController::class,'store']);

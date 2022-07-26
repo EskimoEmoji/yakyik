@@ -3,5 +3,21 @@
 @tailwind utilities;
 
 .card {
-    @apply bg-white mr-4 rounded-xl shadow  p-4 mb-4;
+    @apply bg-gray-900 text-white p-4 rounded-xl;
+}
+
+.button{
+    @apply bg-green-300 text-black hover:bg-green-500;
+}
+
+.input{
+    @apply rounded text-black w-full pl-2;
+}
+
+.background{
+    @apply bg-gray-700;
+}
+
+.secondary{
+    @apply bg-green-300;
 }
