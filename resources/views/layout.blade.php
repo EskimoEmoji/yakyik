@@ -9,13 +9,30 @@
 {{--    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">--}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+
 <body class="background">
     <header class="w-full bg-green-300 mb-8 py-4">
         <div class="flex w-1/3 mx-auto">
             <h1 class="mx-auto text-2xl"><a href="/posts">YakYik</a></h1>
-            <a href="/post/create">New Post</a>
-            <a href="/register">Register</a>
-            <a href="/login">Login</a>
+            <a class="mx-2"href="/post/create">New Post</a>
+            <a class="mx-2"href="/register">Register</a>
+            <a class="mx-2" href="/login">Login</a>
+
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
+            @auth()
+                <div class="mx-2">{{auth()->user()->name}}</div>
+            @endauth
+
         </div>
     </header>
 

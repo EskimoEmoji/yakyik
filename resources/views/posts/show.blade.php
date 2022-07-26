@@ -22,6 +22,8 @@
                     <div class="px-2 font-bold text-sm">{{$post->votes}}</div>
                     <a href="">⬆</a>
                 </div>
+
+
             </div>
 
 

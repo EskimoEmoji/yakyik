@@ -23,7 +23,8 @@ Route::get('/posts',[PostsController::class,'index']);
 Route::get('/posts/{post}',[PostsController::class,'show'])->middleware('auth');
 Route::get('/post/create',[PostsController::class,'create'])->middleware('auth');
 Route::post('/posts',[PostsController::class,'store'])->middleware('auth');
-//Route::patch('/posts/{post}',[PostsController::class,'update']);
+
+Route::patch('/posts/{post}/voted/{direction}',[PostsController::class,'voted']);
 
 Route::post('/posts/{post}/comment',[CommentController::class,'store']);
 

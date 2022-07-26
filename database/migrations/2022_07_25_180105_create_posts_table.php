@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('text');
-            $table->unsignedInteger('votes');
+            $table->integer('votes');
             $table->text('location')->nullable();
             $table->timestamps();
         });

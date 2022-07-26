@@ -65,18 +65,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $dummyIP = '76.249.156.44';
+        $myIP = '76.249.156.44';
+        $CA = '149.142.201.252';
+        $OH = '18.188.149.90';
         $ip = \request()->ip();
-        $location = Location::get($dummyIP);
+        $location = Location::get($CA);
+//        ddd($CA);
         $locationData= [
             'ip' => $location->ip,
             'country' => $location->countryCode,
             'state' => $location->regionCode,
             'zipcode' => $location->zipCode,
             'city' => $location->cityName,
-        ];
+            'latitude' => $location->latitude,
+            'longitude' => $location->longitude,
 
-//        ddd(json_encode($locationData));
+        ];
 
         return User::create([
             'name' => $data['name'],

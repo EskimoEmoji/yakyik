@@ -11,6 +11,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
+        "mjaschen/phpgeo": "^4.2",
         "stevebauman/location": "^6.5"
     },
     "require-dev": {
