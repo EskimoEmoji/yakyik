@@ -25,7 +25,7 @@ Route::get('/post/create',[PostsController::class,'create']);
 Route::post('/posts',[PostsController::class,'store']);
 //Route::patch('/posts/{post}',[PostsController::class,'update']);
 
-Route::post('/comments',[CommentController::class,'create']);
+Route::post('/posts/{post}/comment',[CommentController::class,'store']);
 
 
 Auth::routes();

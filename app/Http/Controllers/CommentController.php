@@ -8,19 +8,22 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function create(Post $post){
+    public function store(Post $post){
 
         // validate
         $attributes = request()->validate([
             'text'=>'required',
         ]);
 
+//        ddd($post->id);
+
         // Need to get Post id
-        $attributes['owner_id'] = 1;
+        $attributes['post_id'] = $post->id;
+        $attributes['user_id'] = auth()->id();
         $attributes['votes'] = 0;
 
        Comment::create($attributes);
 
-        return redirect('/posts/1');
+        return redirect('/posts/');
     }
 }

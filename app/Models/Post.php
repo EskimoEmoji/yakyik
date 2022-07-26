@@ -12,7 +12,7 @@ class Post extends Model
     use HasFactory;
 
     public function comments(){
-        return $this->hasMany(Comment::class,'user_id')->latest();
+        return $this->hasMany(Comment::class,'post_id')->latest();
     }
 
     public function increment($column, $amount = 1, array $extra = [])

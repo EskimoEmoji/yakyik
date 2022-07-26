@@ -19,7 +19,7 @@
 
 
 {{--            COMMENT INPUT--}}
-            <form method="POST" action="/comments" class="mx-auto rounded-xl p-4">
+            <form method="POST" action="/posts/{{$post->id}}/comment" class="mx-auto rounded-xl p-4">
                 @csrf
                 <div class="flex">
                     <input class="rounded-tl rounded-bl text-black w-full pl-2" type="text" name="text" placeholder="comment...">
