@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <div class="mx-4">
+
         {{--    ALL POSTS--}}
         @forelse($posts as $post)
 

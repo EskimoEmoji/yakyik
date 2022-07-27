@@ -1,5 +1,4 @@
-<header class="w-full bg-green-300 mb-3 py-4">
-
+<header class="w-full mb-3 py-4  bg-gradient-to-r from-green-300 to-green-500">
     <div class="flex items-center">
 
         <div class="flex justify-end w-1/3 lg:pr-10 md:pr-10 pr-1">
@@ -28,13 +27,11 @@
             <h1 class="text-center text-3xl"><a href="/posts">YakYik</a></h1>
         </div>
 
-
-
-
-        <div class="w-1/3 flex justify-center">
+{{--        NEW POST BUTTON--}}
+        <div class="w-1/3 flex justify-center ">
             @auth()
                 @if(url()->current() !== 'http://localhost:3000/post/create')
-                    <a class="bg-green-400 hover:bg-green-500 font-bold rounded px-3 py-1 border border-gray-800"href="/post/create">New Post</a>
+                    <a class="bg-green-300 hover:bg-green-500 font-bold rounded px-3 py-1 shadow-md "href="/post/create">New Post</a>
                 @endif
             @endauth
         </div>

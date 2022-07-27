@@ -13,6 +13,15 @@ class Post extends Model
 
     use HasFactory;
 
+    // Sum of votes
+    public function score(){
+        return $this->hasMany(Vote::class,'post_id')->sum('vote');
+    }
+
+    public function didUserVote(){
+        return $this->hasMany(Vote::class,'post_id')->where('user_id',auth()->id())->first();
+    }
+
     //All COMMENTS for a post
     public function comments(){
         return $this->hasMany(Comment::class,'post_id')->latest();

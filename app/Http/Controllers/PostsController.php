@@ -72,47 +72,26 @@ class PostsController extends Controller
     //Stores the users VOTE for a post
     public function voted(Post $post, $direction){
 
-        $userID = auth()->id();
+        //Check if user voted
+        $didVote = Vote::where('user_id',auth()->id())->where('post_id',$post->id)->first();
 
-        $attributes= [
-            'user_id'=>$userID,
-            'post_id'=>$post->id,
-            'vote'=>$direction,
-        ];
-
-        foreach ($post->voters as $vote){
-            // If is a current voter
-            if($vote->user_id === $userID){
-                //Already Voted same direction
-                if($vote->vote ===  (int)$direction){
-                    return Redirect::back();
-                } else{
-                    //Update attributes
-                    $vote->update($attributes);
-
-                    if($direction === '1'){
-                        $post->increment('votes',2);
-                    } else {
-                        $post->decrement('votes',2);
-                    }
-
-                    return Redirect::back();
-                }
+        // If voted
+        if($didVote){
+            if($didVote->vote == $direction){
+                //delete vote
+                $didVote->delete();
+            } else{
+                $didVote->vote = $direction;
+                $didVote->save();
             }
+        } else {
+            //New vote
+            Vote::create([
+                'user_id'=>auth()->id(),
+                'post_id'=>$post->id,
+                'vote'=>$direction,
+            ]);
         }
-
-
-        //Did not vote YET
-        if($direction === '1'){
-            //Increase
-            $post->increment('votes');
-        } else{
-            //decrease
-            $post->decrement('votes');
-        }
-
-        // Cast New Vote
-        Vote::create($attributes);
 
         return Redirect::back();
     }
