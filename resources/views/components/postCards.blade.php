@@ -1,4 +1,4 @@
-<div class="card lg:w-1/4 md:w-1/2 mx-auto mb-3">
+<div class="card lg:w-1/4 md:w-1/2 mx-auto mb-3 shadow-md">
     <div class="">
         <a href="/posts/{{$post->id}}" class="">{{$post->text}}</a>
     </div>

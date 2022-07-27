@@ -4,7 +4,16 @@
         @csrf
         @method('PATCH')
 
-        <button type="submit">⬇</button>
+        @if($post->didUserVote())
+            @if($post->didUserVote()->vote == -1)
+                <button type="submit" class="">👇</button>
+            @else
+                <button type="submit" class="">∇︎</button>
+            @endif
+        @else
+            {{--            ∇--}}
+            <button type="submit" class="">∇</button>
+        @endif
     </form>
 
     <div class="px-2 font-bold text-sm">{{$post->score()}}</div>
@@ -18,11 +27,10 @@
             @if($post->didUserVote()->vote == 1)
                 <button type="submit" class="">👆</button>
             @else
-                <button type="submit" class="">⬆️</button>
+                <button type="submit" class="">∆︎</button>
             @endif
         @else
-            <button type="submit" class="">⬆️</button>
+            <button type="submit" class="">∆︎</button>
         @endif
-        ///sd
     </form>
 </div>
