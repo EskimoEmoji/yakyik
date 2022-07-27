@@ -9,6 +9,8 @@
                 <a href="" class="text-2xl">{{$post->text}}</a>
             </div>
 
+            @include('.components.distanceTime')
+
 {{--            # Comments & Up/Down Voting--}}
             <div class="flex justify-between pt-3">
                 <div class="font-bold">{{$post->comments->count()}}
