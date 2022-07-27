@@ -53,9 +53,9 @@
                             {{$comment->created_at->diffForHumans()}}
                         </div>
                         <div class="flex justify-center items-center">
-                            <a href="">️⬇</a>
+                            <a href="">️∇</a>
                             <div class="px-2 text-sm">{{$comment->votes}}</div>
-                            <a href="">⬆</a>
+                            <a href="">∆</a>
                         </div>
                     </div>
 

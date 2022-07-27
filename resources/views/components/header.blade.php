@@ -18,7 +18,7 @@
                 </form>
                 <div class="mx-2 lg:mx-5 md:mx-5">|</div>
                 <div class="font-bold">
-                    <a href="/posts/{{auth()->id()}}/user">{{auth()->user()->name}}'s Yaks</a>
+                    <a href="/posts/{{auth()->id()}}/user">My Yaks</a>
                 </div>
             @endauth
         </div>

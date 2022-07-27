@@ -8,7 +8,7 @@
             <h1 class="text-2xl font-bold mb-4">New Yak</h1>
             <input class="input" type="text" name="text" placeholder="Yak something...">
             <div class="flex justify-end">
-                <button type="submit" class="button px-4 py-1 rounded-xl mt-4">
+                <button type="submit" class="button px-4 py-1 rounded mt-4">
                     Post
                 </button>
             </div>
