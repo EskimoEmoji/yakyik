@@ -11,6 +11,7 @@ class Vote extends Model
 
     use HasFactory;
 
+    // Trying to get users vote per post
 //    public function myVotes(){
 //        return $this->belongsTo(User::class,'user_id');
 //    }

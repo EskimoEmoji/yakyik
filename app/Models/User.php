@@ -43,7 +43,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //A User has many Posts
     public function posts(){
         return $this->hasMany(Post::class, 'owner_id')->latest();
     }
+
 }

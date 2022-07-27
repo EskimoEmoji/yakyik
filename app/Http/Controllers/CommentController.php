@@ -12,7 +12,7 @@ class CommentController extends Controller
 
         // validate
         $attributes = request()->validate([
-            'text'=>'required',
+            'text'=>'required|min:3|max:200',
         ]);
 
 //        ddd($post->id);

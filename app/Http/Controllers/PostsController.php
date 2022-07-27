@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 use Stevebauman\Location\Facades\Location;
 use Location\Coordinate;
@@ -23,22 +24,30 @@ class PostsController extends Controller
         return view('posts.show', compact('post'));
     }
 
+    public function user(){
+        $posts = Post::where('user_id', auth()->id())->latest()->get();
+
+        return view('posts.index', compact('posts'));
+    }
+
     public function create(){
         return view('posts.create');
     }
 
+    // Stores the POST
     public function store(){
 
         // validate
         $attributes = request()->validate([
-            'text'=>'required',
+            'text'=>'required|min:3|max:200',
         ]);
 
         $myIP = '76.249.156.44';
+        $chi = '107.122.93.54';
         $CA = '149.142.201.252';
         $OH = '18.188.149.90';
         $ip = \request()->ip();
-        $location = Location::get($myIP);
+        $location = Location::get($chi);
 //        ddd($CA);
         $locationData= [
             'ip' => $location->ip,
@@ -60,6 +69,7 @@ class PostsController extends Controller
         return redirect('/posts');
     }
 
+    //Stores the users VOTE for a post
     public function voted(Post $post, $direction){
 
         $userID = auth()->id();
@@ -75,7 +85,7 @@ class PostsController extends Controller
             if($vote->user_id === $userID){
                 //Already Voted same direction
                 if($vote->vote ===  (int)$direction){
-                    return redirect('/posts');
+                    return Redirect::back();
                 } else{
                     //Update attributes
                     $vote->update($attributes);
@@ -86,7 +96,7 @@ class PostsController extends Controller
                         $post->decrement('votes',2);
                     }
 
-                    return redirect('/posts');
+                    return Redirect::back();
                 }
             }
         }
@@ -104,7 +114,7 @@ class PostsController extends Controller
         // Cast New Vote
         Vote::create($attributes);
 
-        return redirect('/posts');
+        return Redirect::back();
     }
 
 }

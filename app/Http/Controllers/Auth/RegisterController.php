@@ -66,10 +66,11 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $myIP = '76.249.156.44';
+        $chi = '107.122.93.54';
         $CA = '149.142.201.252';
         $OH = '18.188.149.90';
         $ip = \request()->ip();
-        $location = Location::get($myIP);
+        $location = Location::get($chi);
 //        ddd($CA);
         $locationData= [
             'ip' => $location->ip,

@@ -1,7 +1,6 @@
 @extends('layout')
 @section('content')
 {{--    SHOWS SINGLE POST & COMMENTS--}}
-
     <div class="mx-4 h-full">
 
         @include('.components.backButton')
@@ -20,13 +19,7 @@
                     @endif
                 </div>
 
-                <div class="flex justify-center items-center">
-                    <a href="">️⬇</a>
-                    <div class="px-2 font-bold text-sm">{{$post->votes}}</div>
-                    <a href="">⬆</a>
-                </div>
-
-
+                @include('.components.postVoting')
             </div>
 
 
@@ -39,7 +32,9 @@
                         Reply
                     </button>
                 </div>
-
+                @error('text')
+                    <p class="text-red-500 text-xs mt-2">{{$message}}</p>
+                @enderror
             </form>
 
 {{--            COMMENTS--}}
@@ -50,7 +45,7 @@
                     </div>
 
 
-{{--                   COMMENTS & VOTING--}}
+{{--                 COMMENT VOTING--}}
                     <div class="flex justify-between pt-3">
                         <div class="text-sm font-bold flex-end">
                             {{$comment->created_at->diffForHumans()}}

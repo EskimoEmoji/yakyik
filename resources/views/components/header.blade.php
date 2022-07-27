@@ -14,18 +14,21 @@
         </div>
 
 
-        <div class="flex justify-end w-1/3 pr-10">
+        <div class="flex justify-end w-1/3 lg:pr-10 md:pr-10 pr-1">
             @if(!auth()->user())
-                <a class="mx-2"href="/register">Register</a>
-                <a class="mx-2" href="/login">Login</a>
+                <a class="font-bold"href="/register">Register</a>
+                <div class="mx-2 lg:mx-5 md:mx-5">|</div>
+                <a class="font-bold" href="/login">Login</a>
             @endif
 
             @auth()
-                <div class="mr-10 font-bold">Hey, {{auth()->user()->name}}</div>
-
+                <div class="font-bold">
+                    <a href="/posts/{{auth()->id()}}/user">{{auth()->user()->name}}'s Yaks</a>
+                </div>
+                <div class="mx-2 lg:mx-5 md:mx-5">|</div>
                 <form id="logout-form" action="/logout" method="POST" class="logout">
                     @csrf
-                    <button type="submit">
+                    <button class="font-bold" type="submit">
                         Logout
                     </button>
                 </form>

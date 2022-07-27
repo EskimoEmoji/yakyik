@@ -23,8 +23,13 @@ Route::get('/', function () {
 Route::get('/posts',[PostsController::class,'index']);
 Route::get('/posts/{post}',[PostsController::class,'show'])->middleware('auth');
 Route::get('/post/create',[PostsController::class,'create'])->middleware('auth');
+Route::get('/posts/{}',[PostsController::class,'create'])->middleware('auth');
 Route::post('/posts',[PostsController::class,'store'])->middleware('auth');
 
+//needs better route
+Route::get('/posts/{post:user_id}/user',[PostsController::class,'user'])->middleware('auth');
+
+//controls vote for Posts. direction of vote
 Route::patch('/posts/{post}/voted/{direction}',[PostsController::class,'voted']);
 
 Route::post('/posts/{post}/comment',[CommentController::class,'store']);
