@@ -1,9 +1,6 @@
 @extends('layout')
 @section('content')
     <div class="mx-4">
-        <div class="mb-3 mx-auto lg:w-1/4 md:w-1/2 flex justify-end">
-            <a class="button font-bold rounded px-3 py-1"href="/post/create">New Post</a>
-        </div>
         {{--    ALL POSTS--}}
         @foreach($posts as $post)
             <div class="card lg:w-1/4 md:w-1/2 mx-auto mb-3">

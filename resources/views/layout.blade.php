@@ -11,40 +11,11 @@
 </head>
 
 <body class="background">
-    <header class="w-full bg-green-300 mb-3 py-4">
-        <div class="flex w-1/3 mx-auto">
-            <h1 class="mx-auto text-3xl"><a href="/posts">YakYik</a></h1>
-        </div>
-        <div class="flex justify-end">
-            @if(!auth()->user())
-                <a class="mx-2"href="/register">Register</a>
-                <a class="mx-2" href="/login">Login</a>
-            @endif
 
-            @auth()
-                    <div class="mx-2">{{auth()->user()->name}}</div>
+    @include('.components.header')
 
-                <form id="logout-form" action="/logout" method="POST" class="logout">
-                    @csrf
-                    <button type="submit">
-                        Logout
-                    </button>
-                </form>
+    @yield('content')
 
-
-            @endauth
-        </div>
-
-    </header>
-
-    <div>
-        @yield('content')
-    </div>
-
-    <footer class="w-full secondary fixed bottom-0">
-        <div class="flex bg-green-400 w-1/3 mx-auto py-1">
-            <h1 class="mx-auto text-2xl">YakYik Footer</h1>
-        </div>
-    </footer>
+    @include('.components.footer');
 </body>
 </html>
