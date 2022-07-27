@@ -11,39 +11,40 @@
 </head>
 
 <body class="background">
-    <header class="w-full bg-green-300 mb-8 py-4">
+    <header class="w-full bg-green-300 mb-3 py-4">
         <div class="flex w-1/3 mx-auto">
-            <h1 class="mx-auto text-2xl"><a href="/posts">YakYik</a></h1>
-            <a class="mx-2"href="/post/create">New Post</a>
-            <a class="mx-2"href="/register">Register</a>
-            <a class="mx-2" href="/login">Login</a>
-
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            </div>
-            @auth()
-                <div class="mx-2">{{auth()->user()->name}}</div>
-            @endauth
-
+            <h1 class="mx-auto text-3xl"><a href="/posts">YakYik</a></h1>
         </div>
+        <div class="flex justify-end">
+            @if(!auth()->user())
+                <a class="mx-2"href="/register">Register</a>
+                <a class="mx-2" href="/login">Login</a>
+            @endif
+
+            @auth()
+                    <div class="mx-2">{{auth()->user()->name}}</div>
+
+                <form id="logout-form" action="/logout" method="POST" class="logout">
+                    @csrf
+                    <button type="submit">
+                        Logout
+                    </button>
+                </form>
+
+
+            @endauth
+        </div>
+
     </header>
 
     <div>
         @yield('content')
     </div>
 
-    <header class="w-full secondary fixed bottom-0">
+    <footer class="w-full secondary fixed bottom-0">
         <div class="flex bg-green-400 w-1/3 mx-auto py-1">
             <h1 class="mx-auto text-2xl">YakYik Footer</h1>
         </div>
-    </header>
+    </footer>
 </body>
 </html>

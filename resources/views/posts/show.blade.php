@@ -1,7 +1,12 @@
 @extends('layout')
 @section('content')
 {{--    SHOWS SINGLE POST & COMMENTS--}}
+
     <div class="mx-4">
+
+        <div class="mb-3 mx-auto lg:w-1/4 md:w-1/2">
+            <a class="button font-bold rounded px-3 py-1"href="/posts">Back</a>
+        </div>
         <div class="card lg:w-1/4 md:w-1/2 mx-auto mb-3">
             <div class="">
                 <a href="" class="text-2xl">{{$post->text}}</a>
