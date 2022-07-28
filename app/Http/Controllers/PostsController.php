@@ -46,22 +46,26 @@ class PostsController extends Controller
         $CA = '149.142.201.252';
         $OH = '18.188.149.90';
         $ip = \request()->ip();
-        $location = Location::get($myIP);
-//        ddd($CA);
-        $locationData= [
-            'ip' => $location->ip,
-            'country' => $location->countryCode,
-            'state' => $location->regionCode,
-            'zipcode' => $location->zipCode,
-            'city' => $location->cityName,
-            'latitude' => $location->latitude,
-            'longitude' => $location->longitude,
+        $location = Location::get($ip);
 
-        ];
+        if($location){
+            $locationData= [
+                'ip' => $location->ip,
+                'country' => $location->countryCode,
+                'state' => $location->regionCode,
+                'zipcode' => $location->zipCode,
+                'city' => $location->cityName,
+                'latitude' => $location->latitude,
+                'longitude' => $location->longitude,
+            ];
+        } else {
+            $locationData = null;
+        }
 
         $attributes['user_id'] = auth()->id();
         $attributes['votes'] = 0;
-        $attributes['location'] = json_encode($locationData);
+        $attributes['location'] = $locationData != null ? json_encode($locationData) : $locationData;
+
 
         Post::create($attributes);
 
