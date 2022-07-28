@@ -67,10 +67,11 @@ class RegisterController extends Controller
     {
         $myIP = '76.249.156.44';
         $chi = '107.122.93.54';
+        $beach = '165.225.10.223';
         $CA = '149.142.201.252';
         $OH = '18.188.149.90';
         $ip = \request()->ip();
-        $location = Location::get($chi);
+        $location = Location::get($beach);
 //        ddd($CA);
         $locationData= [
             'ip' => $location->ip,

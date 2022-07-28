@@ -15,7 +15,6 @@ use Location\Distance\Vincenty;
 class PostsController extends Controller
 {
     public function index(){
-//       $posts = Post::whereNotNull('location')->get();
         $posts = Post::latest()->get();
         return view('posts.index', compact('posts'));
     }

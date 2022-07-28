@@ -4,6 +4,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\ApiPostController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +17,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//API
+Route::get('/api/posts',[ApiPostController::class,'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/posts',[PostsController::class,'index']);
+Route::get('/',[PostsController::class,'index'])->middleware('auth');
+Route::get('/posts',[PostsController::class,'index'])->middleware('auth');
 Route::get('/posts/{post}',[PostsController::class,'show'])->middleware('auth');
 Route::get('/post/create',[PostsController::class,'create'])->middleware('auth');
 Route::get('/posts/{}',[PostsController::class,'create'])->middleware('auth');
