@@ -28,7 +28,7 @@ Route::get('/posts/{}',[PostsController::class,'create'])->middleware('auth');
 Route::post('/posts',[PostsController::class,'store'])->middleware('auth');
 
 //needs better route
-Route::get('/posts/{post:user_id}/user',[PostsController::class,'user'])->middleware('auth');
+Route::get('/user/posts',[PostsController::class,'user'])->middleware('auth');
 
 //controls vote for Posts. direction of vote
 Route::patch('/posts/{post}/voted/{direction}',[PostsController::class,'voted']);

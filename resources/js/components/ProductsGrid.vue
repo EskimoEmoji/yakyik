@@ -31,6 +31,4 @@
         await destroyPost(id);
         await getPosts();
     }
-
-
 </script>
