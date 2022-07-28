@@ -10,6 +10,8 @@
         <div class="card lg:w-1/4 md:w-1/2 mx-auto mb-3 shadow-md">
 
             {{post.text}}
+            <button class="font-bold" @click="deletePost(post.id)">Delete</button>
+
         </div>
     </div>
 
@@ -19,11 +21,16 @@
     import {onMounted} from "vue";
     import { usePosts } from "../composables/posts.js";
 
-    let {posts, getPosts} = usePosts();
+    let {posts, getPosts, destroyPost} = usePosts();
 
     onMounted(()=>{
         getPosts();
     });
+
+    const deletePost = async (id) =>{
+        await destroyPost(id);
+        await getPosts();
+    }
 
 
 </script>

@@ -10,8 +10,13 @@ export function usePosts(){
         posts.value = response.data.data;
     }
 
+    const destroyPost = async (id) =>{
+        await axios.delete('/api/posts/'+id);
+    }
+
     return {
         posts,
-        getPosts
+        getPosts,
+        destroyPost,
     }
 }

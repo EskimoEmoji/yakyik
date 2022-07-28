@@ -1,9 +1,9 @@
 @extends('layout')
 @section('content')
 
-        <div>
-            <products-grid />
-        </div>
+{{--        <div>--}}
+{{--            <products-grid />--}}
+{{--        </div>--}}
         {{--    ALL POSTS--}}
         @forelse($posts as $post)
 

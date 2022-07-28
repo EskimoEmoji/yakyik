@@ -18,7 +18,9 @@ class PostResource extends JsonResource
             'id'=> $this->id,
             'user_id' => $this->user_id,
             'text'=> $this->text,
-            'location'=> $this->location
+            'location'=> $this->location,
+            'comments'=> $this->comments,
+            'created_at' => $this->created_at->diffForHumans()
         ];
     }
 }
