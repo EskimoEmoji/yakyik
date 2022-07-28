@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('text');
             $table->text('location')->nullable();
             $table->timestamps();
+
         });
     }
 
