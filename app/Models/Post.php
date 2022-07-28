@@ -63,7 +63,11 @@ class Post extends Model
     //Distance between the User and a Post in Miles
     public function distance($latitude, $longitude){
 
+<<<<<<< HEAD
         if(auth()->user()->location != null){
+=======
+        if(auth()->user()->locaion != null){
+>>>>>>> a62e0be6da6f4cb5915a251ceea24a9861db16f7
             $userData = json_decode(auth()->user()->location);
         } else {
             return null;
