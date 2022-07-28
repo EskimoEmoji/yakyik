@@ -11,6 +11,7 @@ class ApiPostController extends Controller
 {
     //API
     public function index(){
-        return PostResource::collection(Post::with('comments')->latest()->get());
+//        return PostResource::collection(Post::latest()->get());
+        return Post::with('comments')->with('votes')->with('score')->get();
     }
 }

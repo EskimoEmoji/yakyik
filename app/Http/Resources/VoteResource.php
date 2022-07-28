@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostResource extends JsonResource
+class VoteResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +17,9 @@ class PostResource extends JsonResource
         return [
             'id'=> $this->id,
             'user_id' => $this->user_id,
-            'text'=> $this->text,
-            'location'=> $this->location,
-            'comments'=> $this->comments,
-            'created_at' => $this->created_at->diffForHumans(),
-            'votes' => $this->votes,
+            'post_id' => $this->post_id,
+            'vote' => $this->vote,
+            'created_at' => $this->created_at
         ];
     }
 }

@@ -71,7 +71,7 @@ class RegisterController extends Controller
         $CA = '149.142.201.252';
         $OH = '18.188.149.90';
         $ip = \request()->ip();
-        $location = Location::get($myIP);
+        $location = Location::get($ip);
 //        ddd($CA);
         $locationData= [
             'ip' => $location->ip,

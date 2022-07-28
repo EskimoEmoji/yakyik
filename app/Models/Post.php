@@ -11,6 +11,11 @@ class Post extends Model
 {
     protected $guarded = [];
 
+    protected $hidden = [
+        'location',
+        'updated_at'
+    ];
+
     use HasFactory;
 
     // Sum of votes
@@ -25,6 +30,11 @@ class Post extends Model
     //All COMMENTS for a post
     public function comments(){
         return $this->hasMany(Comment::class,'post_id')->latest();
+    }
+
+    //All COMMENTS for a post
+    public function votes(){
+        return $this->hasMany(Vote::class,'post_id');
     }
 
     //All VOTES for a post
@@ -53,7 +63,7 @@ class Post extends Model
     //Distance between the User and a Post in Miles
     public function distance($latitude, $longitude){
 
-        if(auth()->user()){
+        if(auth()->user()->location != null){
             $userData = json_decode(auth()->user()->location);
         } else {
             return null;
