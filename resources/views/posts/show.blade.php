@@ -53,9 +53,37 @@
                             {{$comment->created_at->diffForHumans()}}
                         </div>
                         <div class="flex justify-center items-center">
-                            <a href="">️∇</a>
-                            <div class="px-2 text-sm">{{$comment->votes}}</div>
-                            <a href="">∆</a>
+                            <form action="/posts/{{$post->id}}/voted/-1/comment/{{$comment->id}}" method="POST">
+                                @csrf
+                                @method('PATCH')
+
+                                @if($comment->didVoteOnComment())
+                                    @if($comment->didVoteOnComment()->vote == -1)
+                                        <button type="submit" class="text-green-300">∇</button>
+                                    @else
+                                        <button type="submit" class="">∇︎</button>
+                                    @endif
+                                @else
+                                    <button type="submit" class="">∇</button>
+                                @endif
+                            </form>
+                            <div class="px-2 font-bold text-sm">{{$comment->commentScore()}}</div>
+
+                            {{--                        UP VOTE--}}
+                            <form action="/posts/{{$post->id}}/voted/1/comment/{{$comment->id}}" method="POST">
+                                @csrf
+                                @method('PATCH')
+
+                                @if($comment->didVoteOnComment())
+                                    @if($comment->didVoteOnComment()->vote == 1)
+                                        <button type="submit" class="text-green-300">∆︎</button>
+                                    @else
+                                        <button type="submit">∆︎</button>
+                                    @endif
+                                @else
+                                    <button type="submit">∆︎</button>
+                                @endif
+                            </form>
                         </div>
                     </div>
 

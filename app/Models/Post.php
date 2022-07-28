@@ -23,9 +23,11 @@ class Post extends Model
         return $this->hasMany(Vote::class,'post_id')->sum('vote');
     }
 
-    public function didUserVote(){
+    public function didVoteOnPost(){
         return $this->hasMany(Vote::class,'post_id')->where('user_id',auth()->id())->first();
     }
+
+
 
     //All COMMENTS for a post
     public function comments(){

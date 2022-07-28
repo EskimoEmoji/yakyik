@@ -72,21 +72,27 @@ class RegisterController extends Controller
         $OH = '18.188.149.90';
         $ip = \request()->ip();
         $location = Location::get($ip);
-        $locationData= [
-            'ip' => $location->ip,
-            'country' => $location->countryCode,
-            'state' => $location->regionCode,
-            'zipcode' => $location->zipCode,
-            'city' => $location->cityName,
-            'latitude' => $location->latitude,
-            'longitude' => $location->longitude,
 
-        ];
+        if($location){
+            $locationData= [
+                'ip' => $location->ip,
+                'country' => $location->countryCode,
+                'state' => $location->regionCode,
+                'zipcode' => $location->zipCode,
+                'city' => $location->cityName,
+                'latitude' => $location->latitude,
+                'longitude' => $location->longitude,
+
+            ];
+        } else {
+            $locationData = null;
+        }
+
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'location' => json_encode($locationData),
+            'location' => $location ? json_encode($locationData) : $locationData,
             'password' => Hash::make($data['password']),
 
         ]);
