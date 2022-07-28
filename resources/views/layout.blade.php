@@ -8,17 +8,21 @@
     <title>Document</title>
 {{--    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">--}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script defer src="{{ mix('js/app.js') }}"></script>
 </head>
 
-<body class="background">
+<body class="background" >
+    <div id="app">
 
-    @include('.components.header')
+        @include('.components.header')
 
-    @yield('content')
-
-
+        @yield('content')
 
 
-    @include('.components.footer');
+
+
+        @include('.components.footer');
+    </div>
 </body>
 </html>

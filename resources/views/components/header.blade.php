@@ -1,4 +1,5 @@
 <header class="w-full mb-3 py-4  bg-gradient-to-r from-green-300 to-green-500">
+{{--    <router-view />--}}
     <div class="flex items-center">
 
         <div class="flex justify-end w-1/3 lg:pr-10 md:pr-10 pr-1">
@@ -37,3 +38,9 @@
         </div>
     </div>
 </header>
+<script>
+    import CompaniesIndex from "../../js/components/CompaniesIndex";
+    export default {
+        components: {CompaniesIndex}
+    }
+</script>

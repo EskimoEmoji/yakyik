@@ -1,6 +1,9 @@
 @extends('layout')
 @section('content')
 
+        <div>
+            <products-grid />
+        </div>
         {{--    ALL POSTS--}}
         @forelse($posts as $post)
 
@@ -14,6 +17,8 @@
                 <div class="mx-auto">Much Empty. Create a new post!</div>
             </div>
         @endforelse
+
+
     </div>
 
 @endsection
