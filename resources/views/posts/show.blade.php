@@ -59,12 +59,12 @@
 
                                 @if($comment->didVoteOnComment())
                                     @if($comment->didVoteOnComment()->vote == -1)
-                                        <button type="submit" class="text-green-300">∇</button>
+                                        <button type="submit" class="px-1">👎</button>
                                     @else
-                                        <button type="submit" class="">∇︎</button>
+                                        <button type="submit" class="px-1">∇︎</button>
                                     @endif
                                 @else
-                                    <button type="submit" class="">∇</button>
+                                    <button type="submit" class="px-1">∇</button>
                                 @endif
                             </form>
                             <div class="px-2 font-bold text-sm">{{$comment->commentScore()}}</div>
@@ -76,12 +76,12 @@
 
                                 @if($comment->didVoteOnComment())
                                     @if($comment->didVoteOnComment()->vote == 1)
-                                        <button type="submit" class="text-green-300">∆︎</button>
+                                        <button type="submit" class="px-1">👍︎</button>
                                     @else
-                                        <button type="submit">∆︎</button>
+                                        <button type="submit" class="px-1">∆︎</button>
                                     @endif
                                 @else
-                                    <button type="submit">∆︎</button>
+                                    <button type="submit" class="px-1">∆︎</button>
                                 @endif
                             </form>
                         </div>

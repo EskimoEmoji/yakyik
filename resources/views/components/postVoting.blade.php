@@ -6,12 +6,12 @@
 
         @if($post->didVoteOnPost())
             @if($post->didVoteOnPost()->vote == -1)
-                <button type="submit" class="text-green-300">∇</button>
+                <button type="submit" class="px-1">👎</button>
             @else
-                <button type="submit" class="">∇︎</button>
+                <button type="submit" class="px-1">∇︎</button>
             @endif
         @else
-            <button type="submit" class="">∇</button>
+            <button type="submit" class="px-1">∇</button>
         @endif
     </form>
 
@@ -24,12 +24,12 @@
 
         @if($post->didVoteOnPost())
             @if($post->didVoteOnPost()->vote == 1)
-                <button type="submit" class="text-green-300">∆</button>
+                <button type="submit" class="px-1">👍</button>
             @else
-                <button type="submit" class="">∆︎</button>
+                <button type="submit" class="px-1">∆︎</button>
             @endif
         @else
-            <button type="submit" class="">∆︎</button>
+            <button type="submit" class="px-1">∆︎</button>
         @endif
     </form>
 </div>
