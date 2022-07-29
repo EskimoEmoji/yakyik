@@ -27,8 +27,6 @@ class Post extends Model
         return $this->hasMany(Vote::class,'post_id')->where('user_id',auth()->id())->first();
     }
 
-
-
     //All COMMENTS for a post
     public function comments(){
         return $this->hasMany(Comment::class,'post_id')->latest();

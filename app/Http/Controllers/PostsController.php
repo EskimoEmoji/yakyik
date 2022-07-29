@@ -15,7 +15,8 @@ use Location\Distance\Vincenty;
 class PostsController extends Controller
 {
     public function index(){
-        $posts = Post::latest()->get();
+
+        $posts = Post::with('comments')->withSum('votes','vote')->latest()->get();
         return view('posts.index', compact('posts'));
     }
 

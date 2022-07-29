@@ -19,9 +19,6 @@
 
         @yield('content')
 
-
-
-
         @include('.components.footer');
     </div>
 </body>
