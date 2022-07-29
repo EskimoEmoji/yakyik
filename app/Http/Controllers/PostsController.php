@@ -16,7 +16,10 @@ class PostsController extends Controller
 {
     public function index(){
 
-        $posts = Post::with('comments')->withSum('votes','vote')->latest()->get();
+        $posts = Post::with('comments')->with('userVotes')->withSum('votes','vote')->latest()->get();
+//        foreach ($posts as $post){
+//            dd(empty($post->userVotes));
+//        }
         return view('posts.index', compact('posts'));
     }
 
