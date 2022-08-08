@@ -53,9 +53,37 @@
                             {{$comment->created_at->diffForHumans()}}
                         </div>
                         <div class="flex justify-center items-center">
-                            <a href="">️∇</a>
-                            <div class="px-2 text-sm">{{$comment->votes}}</div>
-                            <a href="">∆</a>
+                            <form action="/posts/{{$post->id}}/voted/-1/comment/{{$comment->id}}" method="POST">
+                                @csrf
+                                @method('PATCH')
+
+                                @if($comment->didVoteOnComment())
+                                    @if($comment->didVoteOnComment()->vote == -1)
+                                        <button type="submit" class="px-1">👎</button>
+                                    @else
+                                        <button type="submit" class="px-1">∇︎</button>
+                                    @endif
+                                @else
+                                    <button type="submit" class="px-1">∇</button>
+                                @endif
+                            </form>
+                            <div class="px-2 font-bold text-sm">{{$comment->commentScore()}}</div>
+
+                            {{--                        UP VOTE--}}
+                            <form action="/posts/{{$post->id}}/voted/1/comment/{{$comment->id}}" method="POST">
+                                @csrf
+                                @method('PATCH')
+
+                                @if($comment->didVoteOnComment())
+                                    @if($comment->didVoteOnComment()->vote == 1)
+                                        <button type="submit" class="px-1">👍︎</button>
+                                    @else
+                                        <button type="submit" class="px-1">∆︎</button>
+                                    @endif
+                                @else
+                                    <button type="submit" class="px-1">∆︎</button>
+                                @endif
+                            </form>
                         </div>
                     </div>
 
