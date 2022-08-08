@@ -31,7 +31,7 @@ Route::post('/posts',[PostsController::class,'store'])->middleware('auth');
 Route::get('/user/posts',[PostsController::class,'user'])->middleware('auth');
 
 //controls vote for Posts. direction of vote
-Route::patch('/posts/{post}/voted/{direction}',[PostsController::class,'voted']);
+Route::patch('/posts/{post}/voted/{direction}/{type}/{commentID}',[PostsController::class,'voted']);
 
 Route::post('/posts/{post}/comment',[CommentController::class,'store']);
 

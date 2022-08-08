@@ -15,7 +15,11 @@ use Location\Distance\Vincenty;
 class PostsController extends Controller
 {
     public function index(){
-        $posts = Post::latest()->get();
+
+        $posts = Post::with('comments')->with('userVotes')->withSum('votes','vote')->latest()->get();
+//        foreach ($posts as $post){
+//            dd(empty($post->userVotes));
+//        }
         return view('posts.index', compact('posts'));
     }
 
@@ -47,19 +51,25 @@ class PostsController extends Controller
         $OH = '18.188.149.90';
         $ip = \request()->ip();
         $location = Location::get($ip);
-        $locationData= [
-            'ip' => $location->ip,
-            'country' => $location->countryCode,
-            'state' => $location->regionCode,
-            'zipcode' => $location->zipCode,
-            'city' => $location->cityName,
-            'latitude' => $location->latitude,
-            'longitude' => $location->longitude,
 
-        ];
+        if($location){
+            $locationData= [
+                'ip' => $location->ip,
+                'country' => $location->countryCode,
+                'state' => $location->regionCode,
+                'zipcode' => $location->zipCode,
+                'city' => $location->cityName,
+                'latitude' => $location->latitude,
+                'longitude' => $location->longitude,
+
+            ];
+        } else {
+            $locationData = null;
+        }
+
 
         $attributes['user_id'] = auth()->id();
-        $attributes['location'] = json_encode($locationData);
+        $attributes['location'] = $location ? json_encode($locationData) : $locationData;
 
         Post::create($attributes);
 
@@ -67,10 +77,18 @@ class PostsController extends Controller
     }
 
     //Stores the users VOTE for a post
-    public function voted(Post $post, $direction){
+    public function voted(Post $post, $direction, $type, $commentID){
 
-        //Check if user voted
-        $didVote = Vote::where('user_id',auth()->id())->where('post_id',$post->id)->first();
+//        ddd($commentID);
+
+        if($type == 'post'){
+            //Check if user voted
+            $didVote = Vote::where('user_id',auth()->id())->where('post_id',$post->id)->first();
+        } else {
+            $didVote = Vote::where('user_id',auth()->id())->where('comment_id',$commentID)->first();
+        }
+
+
 
         // If voted
         if($didVote){
@@ -83,11 +101,22 @@ class PostsController extends Controller
             }
         } else {
             //New vote
-            Vote::create([
-                'user_id'=>auth()->id(),
-                'post_id'=>$post->id,
-                'vote'=>$direction,
-            ]);
+            if($type == 'post'){
+                Vote::create([
+                    'user_id'=>auth()->id(),
+                    'post_id'=>$post->id,
+                    'vote'=>$direction,
+                    'comment_id'=>null,
+                ]);
+            } else { //Comment
+                Vote::create([
+                    'user_id'=>auth()->id(),
+                    'post_id'=>null,
+                    'vote'=>$direction,
+                    'comment_id'=>$commentID,
+                ]);
+            }
+
         }
 
         return Redirect::back();

@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->foreignId('post_id')->nullable()->references('id')->on('posts')->onDelete('cascade');
+            $table->foreignId('comment_id')->nullable()->references('id')->on('comments')->onDelete('cascade');
             $table->integer('vote');
             $table->timestamps();
         });
