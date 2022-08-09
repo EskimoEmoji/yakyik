@@ -32,3 +32,9 @@
         @endif
     </form>
 </div>
+{{--<script>--}}
+{{--    import ProductsGrid from "../../js/components/ProductsGrid";--}}
+{{--    export default {--}}
+{{--        components: {ProductsGrid}--}}
+{{--    }--}}
+{{--</script>--}}

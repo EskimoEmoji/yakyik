@@ -1,10 +1,7 @@
 @extends('layout')
 @section('content')
 
-{{--        <div>--}}
-{{--            <products-grid />--}}
-{{--        </div>--}}
-        {{--    ALL POSTS--}}
+        <products-grid></products-grid>
         @forelse($posts as $post)
 
             @include('components.postCards')
@@ -22,3 +19,4 @@
     </div>
 
 @endsection
+

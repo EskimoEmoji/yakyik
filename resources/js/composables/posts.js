@@ -7,7 +7,7 @@ export function usePosts(){
 
     const getPosts = async () =>{
         let response = await axios.get('/api/posts');
-        posts.value = response.data.data;
+        posts.value = response.data;
     }
 
     const destroyPost = async (id) =>{

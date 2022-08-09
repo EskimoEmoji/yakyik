@@ -36,11 +36,12 @@
                 @endif
             @endauth
         </div>
+{{--        <products-grid></products-grid>--}}
     </div>
 </header>
-<script>
-    import CompaniesIndex from "../../js/components/CompaniesIndex";
-    export default {
-        components: {CompaniesIndex}
-    }
-</script>
+{{--<script>--}}
+{{--    import ProductsGrid from "../../js/components/ProductsGrid.vue";--}}
+{{--    export default {--}}
+{{--        components: {ProductsGrid}--}}
+{{--    }--}}
+{{--</script>--}}
